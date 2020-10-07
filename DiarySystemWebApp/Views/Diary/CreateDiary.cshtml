@@ -1,0 +1,42 @@
+﻿<div class="row justify-content-center">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Register your diary</h1>
+                            </div>
+                            <form action="CreateDiary" method="post" class="user">
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="diary_subject" name="diary_subject" placeholder="Diary Subject" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" style="resize: none;" rows="15" id="diary_content" name="diary_content" placeholder="Diary Body" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" name="submit" id="submit" class="btn btn-primary btn-user btn-block" value="Submit" />
+                                </div>
+                            </form>
+                            @if (ViewBag.ErrorMsg != null)
+                            {
+                                <hr>
+                                <div class="text-center">
+                                    <p style="color:red">@ViewBag.ErrorMsg</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

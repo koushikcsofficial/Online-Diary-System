@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/Contents/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Contents/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form action="Register" method="POST" id="signup-form" class="signup-form">
+                        @Html.AntiForgeryToken()
+                        <h2 class="form-title">Create account</h2>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="firstName" id="firstName" placeholder="First Name" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="lastName" id="lastName" placeholder="Last Name" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="password" id="password" placeholder="Password" required />
+                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="address" id="address" placeholder="Address" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="mobile" id="mobile" placeholder="Mobile Number" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="secretCode" id="secretCode" placeholder="Secret code to register as official personel" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" />
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Have already an account ? <a href="@Url.Action("Login", "Authentication")" class="loginhere-link">Login here</a>
+                    </p>
+                    @if (ViewBag.ErrorMsg != null)
+                    {
+                        <p class="loginhere" style="color:red">
+                            @ViewBag.ErrorMsg
+                        </p>
+                    }
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="~/Contents/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Contents/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Officially Registered Diaries</h1>
+</div>
+
+@if (ViewBag.ErrorMsg != null)
+{
+    <div class="col-lg-12 mb-2">
+        <div class="card bg-light text-black shadow">
+            <div class="card-body">
+                @ViewBag.ErrorMsg
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData["ErrorMsg"] != null)
+{
+    <div class="col-lg-12 mb-2">
+        <div class="card bg-light text-black shadow">
+            <div class="card-body">
+                @TempData["ErrorMsg"].ToString()
+            </div>
+        </div>
+    </div>
+}
+
+<!--For user purpose-->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            Registered Diaries
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered"
+                   id="dataTable"
+                   width="100%"
+                   cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Diary Id</th>
+                        <th>Subject</th>
+                        <th>Submitted At</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var data in (IEnumerable<DiarySystemWebApp.Models.DiaryDetail>)ViewData["Diaries"])
+                    {
+                        <tr>
+                            <td>@data.Diary_Id</td>
+                            <td>@data.Diary_Subject</td>
+                            <td>@data.Diary_SubmittedAt</td>
+                            <td>
+                                @{
+                                    string result = null;
+                                    if (data.Diary_IsAccepted == 1)
+                                    {
+                                        result = "Accepted";
+                                    }
+                                    else if (data.Diary_IsAccepted == 2)
+                                    {
+                                        result = "Pending";
+                                    }
+                                    else
+                                    {
+                                        result = "Rejected";
+                                    }
+                                }
+                                @result
+                            </td>
+                            <td>
+                                @*<a href="@Url.Action("UpdateDiaryByOfficial","Diary", new { diary_Id = data.Diary_Id, option=1 })" class="btn btn-success btn-circle">
+                                      <i class="fas fa-check"></i>
+                                    </a>
+                                    <a href="@Url.Action("UpdateDiaryByOfficial","Diary", new { diary_Id = data.Diary_Id, option=0 })" class="btn btn-danger btn-circle">
+                                      <i class="fas fa-times"></i>
+                                    </a>*@
+                                <a href="@Url.Action("ShowDiary","Diary", new { diary_Id = data.Diary_Id})" class="btn btn-success btn-circle">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
